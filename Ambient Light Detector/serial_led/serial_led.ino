@@ -12,16 +12,14 @@ void loop() {
     incomingByte = Serial.read();
     if (incomingByte == 'H') {
       digitalWrite(ledPin, HIGH);
-      Serial.write('1');
     }
     if (incomingByte == 'L') {
       digitalWrite(ledPin, LOW);
-      Serial.write('0');
     }
   }
-  //if (digitalRead(ledPin)) {
-  //  Serial.write('1');
-  //} else {
-  //  Serial.write('0');
-  //}
+  if (digitalRead(ledPin)) {
+    Serial.write('1');
+  } else {
+    Serial.write('0');
+  }
 }

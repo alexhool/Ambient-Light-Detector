@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import ttk
 import serial
 import time
+import sys
 
 def ledOn():
     ser.write(bytes('H', 'UTF-8'))
@@ -32,7 +33,7 @@ ser = serial.Serial(
         parity=serial.PARITY_NONE,
         stopbits=serial.STOPBITS_ONE,
         bytesize=serial.EIGHTBITS,
-        timeout=None)
+        timeout=0)
 ledOff()
 
 # label - title
@@ -50,6 +51,7 @@ label.grid(column=1, row=1, sticky=W, padx=0, pady=5)
 # button - LED on
 onButton = ttk.Button(root, text="On", width=10, command=ledOn)
 onButton.grid(column=0, row=2, sticky=S, padx=10, pady=10, ipadx=5, ipady=2)
+
 # button - LED off
 offButton = ttk.Button(root, text="Off", width=10, command=ledOff)
 offButton.grid(column=1, row=2, sticky=S, padx=10, pady=10, ipadx=5, ipady=2)
