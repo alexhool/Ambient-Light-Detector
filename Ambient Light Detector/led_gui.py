@@ -32,7 +32,7 @@ ser = serial.Serial(
         parity=serial.PARITY_NONE,
         stopbits=serial.STOPBITS_ONE,
         bytesize=serial.EIGHTBITS,
-        timeout=0)
+        timeout=None)
 ledOff()
 
 # label - title
@@ -57,6 +57,7 @@ offButton.grid(column=1, row=2, sticky=S, padx=10, pady=10, ipadx=5, ipady=2)
 # main loop
 time.sleep(1.25)
 while True:
+    print(ser.read())
     if (ser.read() == b'1'):
         state.set("On")
     if (ser.read() == b'0'):
