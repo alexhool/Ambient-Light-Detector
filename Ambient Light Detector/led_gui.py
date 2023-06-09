@@ -2,7 +2,6 @@ from tkinter import *
 from tkinter import ttk
 import serial
 import time
-import sys
 
 def ledOn():
     ser.write(bytes('H', 'UTF-8'))
