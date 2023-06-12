@@ -60,15 +60,15 @@ canvas.get_tk_widget().grid(column=0, row=0, rowspan=15, sticky=tk.NSEW, padx=10
 
 # Add LED Visualizer label
 label = tk.Label(root, text="LED Visualizer:", font=("Segoe UI", 15), bg='#e4f2f5', wraplength=100, justify="center")
-label.grid(column=1, row=1, padx=8, pady=0, sticky=tk.SW)
+label.grid(column=1, row=2, padx=8, pady=0, sticky=tk.SW)
 
 # Add the on button
 on = tk.Button(root, text="On", width=12, height=2, font=("Segoe UI", 8), bg='#f0f6f7', state="normal", command=ledOn)
-on.grid(column=1, row=2, padx=10, pady=10, sticky=tk.NW)
+on.grid(column=1, row=3, padx=10, pady=10, sticky=tk.NW)
 
 # Add the off button
 off = tk.Button(root, text="Off", width=12, height=2, font=("Segoe UI", 8), bg='#D3D3D3', state="disabled", command=ledOff)
-off.grid(column=1, row=2, padx=10, pady=48, sticky=tk.NW)
+off.grid(column=1, row=3, padx=10, pady=48, sticky=tk.NW)
 
 # Add the quit button
 quit = tk.Button(root, text="QUIT", width=12, height=2, font=("Segoe UI", 8), bg='#f0f6f7',
