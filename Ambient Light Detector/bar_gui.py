@@ -21,13 +21,15 @@ def ledOff():
     
 # Function to update the bar graph
 def update(voltage):
-    for rect, y in zip(voltage_bar, range(1)):
-        rect.set_height(voltage)
     ax.margins(0.5, 0) 
     ax.set_ylim(0, 5.25)
     ax.set_yticks(np.arange(0, 5.5, 0.5))
     ax.set_title("Ambient Light", size=16, pad=25, weight='bold')
     ax.set_ylabel("Voltage (V)", size=14, labelpad=10)
+    bar[0].set_height(voltage)
+    label.set_text(f'{voltage:.3f}')
+    label.set_position((0, voltage))
+    Figure.pause(0.001)
 
 # Function to quit the program
 def _quit():
@@ -36,7 +38,7 @@ def _quit():
     ser.close()
 
 # Initialize serial connection
-ser = serial.Serial(port='COM3', baudrate=115200, timeout=0)
+ser = serial.Serial(port='COM3', baudrate=250000, timeout=0)
 
 # Set up the Tkinter GUI
 root = tk.Tk()
@@ -52,7 +54,8 @@ ax = fig.add_subplot(1,1,1)
 ax.set_facecolor('#f0f6f7')
 ax.tick_params(axis='x', bottom=False, labelsize=14, pad=10)
 ax.tick_params(axis='y', left=True, labelsize=12, pad=2)
-voltage_bar = ax.bar("Brightness", 0, color='#a1c9f4', linewidth=0, width=2, align='center')
+bar = ax.bar("Brightness", 0, color='#a1c9f4', linewidth=0, width=2, align="center")
+label = ax.text(0, 0.2, '0.505 V', ha='center', transform=ax.transData)
 
 # Add the plot to the Tkinter widget
 canvas = FigureCanvasTkAgg(fig, root)
@@ -79,7 +82,7 @@ quit.grid(column=1, row=14, padx=12, pady=5, sticky=tk.W)
 root.protocol("WM_DELETE_WINDOW", _quit)
 
 # Read serial data and update the bar graph
-time.sleep(1.2)
+time.sleep(1.25)
 while True:
     try:
         data = ser.readline().strip().decode()

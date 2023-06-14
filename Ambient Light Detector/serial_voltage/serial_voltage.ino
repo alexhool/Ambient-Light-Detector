@@ -1,7 +1,7 @@
 bool ledOn = false;
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(250000);
   pinMode(13, OUTPUT);
   digitalWrite(13, LOW);
 }
@@ -19,12 +19,11 @@ void loop() {
       ledOn = false;
     }
   }
-  if (ledOn) { // 977.52 Hz
-    int delay = map(value, 0, 1023, 0, 1023);
+  if (ledOn) { // max: 977.52 Hz
     digitalWrite(13, HIGH);
-    delayMicroseconds(delay);
+    delayMicroseconds(value);
     digitalWrite(13, LOW);
-    delayMicroseconds(1023 - delay);
+    delayMicroseconds(1023 - value);
   } else {
     digitalWrite(13, LOW);
     delayMicroseconds(1000);
