@@ -1,15 +1,14 @@
 bool ledOn = false;
 
 void setup() {
-  Serial.begin(250000);
+  Serial.begin(9600);
   pinMode(13, OUTPUT);
   digitalWrite(13, LOW);
 }
 
 void loop() {
-  int value = analogRead(A0);
+  int value = analogRead(A1);
   Serial.println(value);
-  Serial.flush();
   if (Serial.available() > 0) {
     int incomingByte = Serial.read();
     if (incomingByte == 'H') {
