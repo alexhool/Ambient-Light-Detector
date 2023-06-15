@@ -30,6 +30,10 @@ def dataOn():
 def dataOff():
     offData.configure(state="disabled", bg='#D3D3D3')
     ser.close()
+    bar[0].set_height(0)
+    text.set_text("Data Collection Off")
+    text.set_y(2.8)
+    canvas.draw()
     onData.configure(state="normal", bg='#f0f6f7')
     
 # Function to update the bar graph
@@ -40,8 +44,8 @@ def update(voltage):
     ax.set_title("Ambient Light", size=16, pad=25, weight='bold')
     ax.set_ylabel("Voltage (V)", size=14, labelpad=10)
     bar[0].set_height(voltage)
-    text.set_text('{:.3f} V'.format(voltage)) # update voltage label
-    text.set_y(voltage + 0.08) # move label with bar
+    text.set_text('{:.3f} V'.format(voltage))
+    text.set_y(voltage + 0.08)
     canvas.draw()
 
 # Function to quit the program
@@ -78,33 +82,32 @@ canvas.get_tk_widget().grid(column=0, row=0, rowspan=15, sticky=tk.NSEW, padx=10
 
 # Add Data Collection label
 labelData = tk.Label(root, text="Data Collection:", font=("DejaVu Sans", 15), bg='#e4f2f5', wraplength=100, justify="center")
-labelData.grid(column=1, row=2, padx=6, pady=0, sticky=tk.SW)
+labelData.grid(column=1, row=2, padx=4, pady=0, sticky=tk.SW)
 
 # Add the Data On button
 onData = tk.Button(root, text="On", width=10, height=1, font=("DejaVu Sans", 9), bg='#D3D3D3', state="disabled", command=dataOn)
-onData.grid(column=1, row=3, padx=12, pady=10, sticky=tk.NW)
+onData.grid(column=1, row=3, padx=10, pady=10, sticky=tk.NW)
 
 # Add the Data Off button
 offData = tk.Button(root, text="Off", width=10, height=1, font=("DejaVu Sans", 9), bg='#f0f6f7', state="normal", command=dataOff)
-offData.grid(column=1, row=3, padx=12, pady=38, sticky=tk.NW)
+offData.grid(column=1, row=3, padx=10, pady=38, sticky=tk.NW)
 
 # Add LED Visualizer label
 labelLED = tk.Label(root, text="LED Visualizer:", font=("DejaVu Sans", 15), bg='#e4f2f5', wraplength=100, justify="center")
-labelLED.grid(column=1, row=4, padx=6, pady=0, sticky=tk.SW)
+labelLED.grid(column=1, row=4, padx=4, pady=0, sticky=tk.SW)
 
 # Add the LED On button
 onLED = tk.Button(root, text="On", width=10, height=1, font=("DejaVu Sans", 9), bg='#f0f6f7', state="normal", command=ledOn)
-onLED.grid(column=1, row=5, padx=12, pady=10, sticky=tk.NW)
+onLED.grid(column=1, row=5, padx=10, pady=10, sticky=tk.NW)
 
 # Add the LED Off button
 offLED = tk.Button(root, text="Off", width=10, height=1, font=("DejaVu Sans", 9), bg='#D3D3D3', state="disabled", command=ledOff)
-offLED.grid(column=1, row=5, padx=12, pady=38, sticky=tk.NW)
+offLED.grid(column=1, row=5, padx=10, pady=38, sticky=tk.NW)
 
 # Add the quit button
 quitB = tk.Button(root, text="QUIT", width=10, height=2, font=("DejaVu Sans", 9), bg='#f0f6f7',
-                activebackground='#de282c', activeforeground='#f0f6f7',
-                command=exit)
-quitB.grid(column=1, row=14, padx=12, pady=5, sticky=tk.W)
+                activebackground='#de282c', activeforeground='#f0f6f7', command=exit)
+quitB.grid(column=1, row=14, padx=10, pady=5, sticky=tk.W)
 root.protocol("WM_DELETE_WINDOW", exit)
 
 # Read serial data and update the bar graph
