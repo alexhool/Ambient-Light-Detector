@@ -1,7 +1,7 @@
 bool ledOn = false;
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(2400);
   pinMode(13, OUTPUT);
   digitalWrite(13, LOW);
 }
@@ -22,13 +22,13 @@ void loop() {
     }
   }
   if (ledOn) {
-    int delay = round((unsigned long) value * value / 91.0);
+    int delay = round((unsigned long) value * value / 235.97);
     digitalWrite(13, HIGH);
     delayMicroseconds(delay);
     digitalWrite(13, LOW);
-    delayMicroseconds(11500 - delay);
+    delayMicroseconds(4435 - delay);
   } else {
     digitalWrite(13, LOW);
-    delayMicroseconds(11500);
+    delayMicroseconds(4435);
   }
 }

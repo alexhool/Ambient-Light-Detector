@@ -20,21 +20,24 @@ def ledOff():
     ser.flush()
     onLED.configure(state="normal", bg='#f0f6f7')
 
-# Function to turn data collection on
-def dataOn():
-    onData.configure(state="disabled", bg='#D3D3D3')
+# Function to turn serial connection on
+def serOn():
+    onSer.configure(state="disabled", bg='#D3D3D3')
     ser.open()
-    offData.configure(state="normal", bg='#f0f6f7')
+    onLED.configure(state="normal", bg='#f0f6f7')
+    offSer.configure(state="normal", bg='#f0f6f7')
 
-# Function to turn data collection off
-def dataOff():
-    offData.configure(state="disabled", bg='#D3D3D3')
+# Function to turn serial connection off
+def serOff():
+    offSer.configure(state="disabled", bg='#D3D3D3')
+    ledOff()
+    onLED.configure(state="disabled", bg='#D3D3D3')
     ser.close()
     bar[0].set_height(0)
-    text.set_text("Data Collection Off")
+    text.set_text("Serial Connection Off")
     text.set_y(2.8)
     canvas.draw()
-    onData.configure(state="normal", bg='#f0f6f7')
+    onSer.configure(state="normal", bg='#f0f6f7')
     
 # Function to update the bar graph
 def update(voltage):
@@ -56,12 +59,12 @@ def exit():
     os._exit(0)
 
 # Initialize serial connection
-ser = serial.Serial(port='COM3', baudrate=115200, timeout=0)
+ser = serial.Serial(port='COM3', baudrate=2400, timeout=0)
 
 # Set up the Tkinter GUI
 root = tk.Tk()
 root.title("Ambient Light Graph")
-root.geometry('540x625')
+root.geometry('543x625')
 root.resizable(False, False)
 root.config(bg='#e4f2f5')
 
@@ -80,34 +83,34 @@ canvas = FigureCanvasTkAgg(fig, root)
 canvas.get_tk_widget().config(bg='black')
 canvas.get_tk_widget().grid(column=0, row=0, rowspan=15, sticky=tk.NSEW, padx=10, pady=10, ipadx=5, ipady=2)
 
-# Add Data Collection label
-labelData = tk.Label(root, text="Data Collection:", font=("DejaVu Sans", 15), bg='#e4f2f5', wraplength=100, justify="center")
-labelData.grid(column=1, row=2, padx=4, pady=0, sticky=tk.SW)
+# Add Serial Connection label
+labelSer = tk.Label(root, text="Serial Connection", font=("DejaVu Sans", 15), bg='#e4f2f5', wraplength=110, justify="center")
+labelSer.grid(column=1, row=2, padx=0, pady=0, sticky=tk.SW)
 
-# Add the Data On button
-onData = tk.Button(root, text="On", width=10, height=1, font=("DejaVu Sans", 9), bg='#D3D3D3', state="disabled", command=dataOn)
-onData.grid(column=1, row=3, padx=10, pady=10, sticky=tk.NW)
+# Add the Serial On button
+onSer = tk.Button(root, text="On", width=10, height=1, font=("DejaVu Sans", 9), bg='#D3D3D3', state="disabled", command=serOn)
+onSer.grid(column=1, row=3, padx=12, pady=10, sticky=tk.NW)
 
-# Add the Data Off button
-offData = tk.Button(root, text="Off", width=10, height=1, font=("DejaVu Sans", 9), bg='#f0f6f7', state="normal", command=dataOff)
-offData.grid(column=1, row=3, padx=10, pady=38, sticky=tk.NW)
+# Add the Serial Off button
+offSer = tk.Button(root, text="Off", width=10, height=1, font=("DejaVu Sans", 9), bg='#f0f6f7', state="normal", command=serOff)
+offSer.grid(column=1, row=3, padx=12, pady=38, sticky=tk.NW)
 
 # Add LED Visualizer label
-labelLED = tk.Label(root, text="LED Visualizer:", font=("DejaVu Sans", 15), bg='#e4f2f5', wraplength=100, justify="center")
-labelLED.grid(column=1, row=4, padx=4, pady=0, sticky=tk.SW)
+labelLED = tk.Label(root, text="LED Visualizer", font=("DejaVu Sans", 15), bg='#e4f2f5', wraplength=100, justify="center")
+labelLED.grid(column=1, row=4, padx=8, pady=0, sticky=tk.SW)
 
 # Add the LED On button
 onLED = tk.Button(root, text="On", width=10, height=1, font=("DejaVu Sans", 9), bg='#f0f6f7', state="normal", command=ledOn)
-onLED.grid(column=1, row=5, padx=10, pady=10, sticky=tk.NW)
+onLED.grid(column=1, row=5, padx=12, pady=10, sticky=tk.NW)
 
 # Add the LED Off button
 offLED = tk.Button(root, text="Off", width=10, height=1, font=("DejaVu Sans", 9), bg='#D3D3D3', state="disabled", command=ledOff)
-offLED.grid(column=1, row=5, padx=10, pady=38, sticky=tk.NW)
+offLED.grid(column=1, row=5, padx=12, pady=38, sticky=tk.NW)
 
 # Add the quit button
 quitB = tk.Button(root, text="QUIT", width=10, height=2, font=("DejaVu Sans", 9), bg='#f0f6f7',
                 activebackground='#de282c', activeforeground='#f0f6f7', command=exit)
-quitB.grid(column=1, row=14, padx=10, pady=5, sticky=tk.W)
+quitB.grid(column=1, row=14, padx=12, pady=8, sticky=tk.W)
 root.protocol("WM_DELETE_WINDOW", exit)
 
 # Read serial data and update the bar graph
