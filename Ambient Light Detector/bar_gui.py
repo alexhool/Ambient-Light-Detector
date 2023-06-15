@@ -24,9 +24,10 @@ def ledOff():
 def serOn():
     onSer.configure(state="disabled", bg='#D3D3D3')
     ser.open()
+    time.sleep(1.27)
     onLED.configure(state="normal", bg='#f0f6f7')
     offSer.configure(state="normal", bg='#f0f6f7')
-
+    
 # Function to turn serial connection off
 def serOff():
     offSer.configure(state="disabled", bg='#D3D3D3')
@@ -115,7 +116,6 @@ root.protocol("WM_DELETE_WINDOW", exit)
 
 # Read serial data and update the bar graph
 list = []
-time.sleep(1.25)
 while True:
     while ('|' not in list and ser.is_open):
         try:
