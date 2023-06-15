@@ -81,17 +81,24 @@ quit.grid(column=1, row=14, padx=12, pady=5, sticky=tk.W)
 root.protocol("WM_DELETE_WINDOW", exit)
 
 # Read serial data and update the bar graph
+list = []
 time.sleep(1.25)
 while True:
+    while '|' not in list:
+        try:
+            data = ser.read().decode().strip()
+            if data:
+                list.append(data)
+        except ValueError:
+            pass
+    #print(list)
+    list.pop()
+    #print("".join(list))
     try:
-        data = ser.readline().decode().strip()
-        ser.reset_input_buffer()
-        if data:
-            voltage = int(data) * (5.0 / 1023.0)
-            if (voltage > 0.5 or voltage == 0):
-                print(voltage)
-                update(voltage)
+        voltage = int("".join(list)) * (5.0 / 1023.0)
+        update(voltage)
     except ValueError:
         pass
+    list.clear()
     root.update_idletasks()
     root.update()
