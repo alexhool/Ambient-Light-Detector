@@ -93,7 +93,7 @@ bar = ax.bar(
     height=0,
     color="#fcd768",
     edgecolor="#000000",
-    linewidth=0.45,
+    linewidth=0.5,
     width=2,
     align="center",
 )
