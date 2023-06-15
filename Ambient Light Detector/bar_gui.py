@@ -26,6 +26,7 @@ def ledOff():
 # Function to turn serial connection on
 def serOn():
     onSer.configure(state="disabled", bg="#D3D3D3")
+    bar[0].set_visible(True)
     ser.open()
     time.sleep(1.27)
     onLED.configure(state="normal", bg="#f0f6f7")
@@ -38,7 +39,7 @@ def serOff():
     ledOff()
     onLED.configure(state="disabled", bg="#D3D3D3")
     ser.close()
-    bar[0].set_height(0)
+    bar[0].set_visible(False)
     text.set_text("Serial Connection Off")
     text.set_y(2.8)
     canvas.draw()
@@ -88,11 +89,11 @@ ax.set_facecolor("#fefdf9")
 ax.tick_params(axis="x", bottom=False, labelsize=14, pad=10)
 ax.tick_params(axis="y", left=True, labelsize=12, pad=2)
 bar = ax.bar(
-    "Brightness",
-    0,
+    x="Brightness",
+    height=0,
     color="#fcd768",
     edgecolor="#000000",
-    linewidth=0.5,
+    linewidth=0.45,
     width=2,
     align="center",
 )
