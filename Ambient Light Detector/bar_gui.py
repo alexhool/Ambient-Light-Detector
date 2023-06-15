@@ -27,7 +27,7 @@ def serOn():
     time.sleep(1.27)
     onLED.configure(state="normal", bg='#f0f6f7')
     offSer.configure(state="normal", bg='#f0f6f7')
-    
+
 # Function to turn serial connection off
 def serOff():
     offSer.configure(state="disabled", bg='#D3D3D3')
@@ -60,7 +60,7 @@ def exit():
     os._exit(0)
 
 # Initialize serial connection
-ser = serial.Serial(port='COM3', baudrate=2400, timeout=0)
+ser = serial.Serial(port='COM3', baudrate=9600, timeout=0)
 
 # Set up the Tkinter GUI
 root = tk.Tk()
