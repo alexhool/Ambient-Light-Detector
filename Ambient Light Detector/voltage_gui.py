@@ -1,29 +1,26 @@
 import os
 import tkinter as tk
+import time
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
 import serial
-import time
 
 
-# Function to turn the LED on
-def ledOn():
+def led_on():  # Function to turn the LED on
     onLED.configure(state="disabled", bg="#D3D3D3")
     ser.write(bytes("H", "UTF-8"))
     ser.flush()
     offLED.configure(state="normal", bg="#f0f6f7")
 
 
-# Function to turn the LED off
-def ledOff():
+def led_off():  # Function to turn the LED off
     offLED.configure(state="disabled", bg="#D3D3D3")
     ser.write(bytes("L", "UTF-8"))
     ser.flush()
     onLED.configure(state="normal", bg="#f0f6f7")
 
 
-# Function to turn serial connection on
-def serOn():
+def serial_on():  # Function to turn serial connection on
     onSer.configure(state="disabled", bg="#D3D3D3")
     bar[0].set_visible(True)
     ser.open()
@@ -32,10 +29,9 @@ def serOn():
     offSer.configure(state="normal", bg="#f0f6f7")
 
 
-# Function to turn serial connection off
-def serOff():
+def serial_off():  # Function to turn serial connection off
     offSer.configure(state="disabled", bg="#D3D3D3")
-    ledOff()
+    led_off()
     onLED.configure(state="disabled", bg="#D3D3D3")
     ser.close()
     bar[0].set_visible(False)
@@ -45,8 +41,7 @@ def serOff():
     onSer.configure(state="normal", bg="#f0f6f7")
 
 
-# Function to update the bar graph
-def update(voltage):
+def update(voltage):  # Function to update the bar graph
     ax.margins(0.5, 0)
     ax.set_ylim(0, 5.4)
     ax.set_yticks([0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5])
@@ -62,7 +57,7 @@ def update(voltage):
 def exit():
     if not ser.is_open:
         ser.open()
-    ledOff()
+    led_off()
     os._exit(0)
 
 
@@ -125,7 +120,7 @@ onSer = tk.Button(
     font=("DejaVu Sans", 9),
     bg="#D3D3D3",
     state="disabled",
-    command=serOn,
+    command=serial_on,
 )
 onSer.grid(column=1, row=3, padx=12, pady=10, sticky=tk.NW)
 
@@ -138,7 +133,7 @@ offSer = tk.Button(
     font=("DejaVu Sans", 9),
     bg="#fefdf9",
     state="normal",
-    command=serOff,
+    command=serial_off,
 )
 offSer.grid(column=1, row=3, padx=12, pady=38, sticky=tk.NW)
 
@@ -162,7 +157,7 @@ onLED = tk.Button(
     font=("DejaVu Sans", 9),
     bg="#fefdf9",
     state="normal",
-    command=ledOn,
+    command=led_on,
 )
 onLED.grid(column=1, row=5, padx=12, pady=10, sticky=tk.NW)
 
@@ -175,7 +170,7 @@ offLED = tk.Button(
     font=("DejaVu Sans", 9),
     bg="#D3D3D3",
     state="disabled",
-    command=ledOff,
+    command=led_off,
 )
 offLED.grid(column=1, row=5, padx=12, pady=38, sticky=tk.NW)
 
