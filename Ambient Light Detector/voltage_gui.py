@@ -6,21 +6,24 @@ from matplotlib.figure import Figure
 import serial
 
 
-def led_on():  # Function to turn the LED on
+def led_on():
+    """Function to turn the LED on"""
     onLED.configure(state="disabled", bg="#D3D3D3")
     ser.write(bytes("H", "UTF-8"))
     ser.flush()
     offLED.configure(state="normal", bg="#f0f6f7")
 
 
-def led_off():  # Function to turn the LED off
+def led_off():
+    """Function to turn the LED off"""
     offLED.configure(state="disabled", bg="#D3D3D3")
     ser.write(bytes("L", "UTF-8"))
     ser.flush()
     onLED.configure(state="normal", bg="#f0f6f7")
 
 
-def serial_on():  # Function to turn serial connection on
+def serial_on():
+    """Function to turn serial connection on"""
     onSer.configure(state="disabled", bg="#D3D3D3")
     rect[0].set_visible(True)
     ser.open()
@@ -29,7 +32,8 @@ def serial_on():  # Function to turn serial connection on
     offSer.configure(state="normal", bg="#f0f6f7")
 
 
-def serial_off():  # Function to turn serial connection off
+def serial_off():
+    """Function to turn serial connection off"""
     offSer.configure(state="disabled", bg="#D3D3D3")
     led_off()
     onLED.configure(state="disabled", bg="#D3D3D3")
@@ -41,7 +45,8 @@ def serial_off():  # Function to turn serial connection off
     onSer.configure(state="normal", bg="#f0f6f7")
 
 
-def update(voltage):  # Function to update the bar graph
+def update(voltage):  
+    # Function to update the bar graph
     ax.margins(0.5, 0)
     ax.set_ylim(0, 5.4)
     ax.set_yticks([0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5])
@@ -52,8 +57,8 @@ def update(voltage):  # Function to update the bar graph
     text.set_y(voltage + 0.08)
     canvas.draw()
 
-
-def exit():  # Function to quit the program
+"""Function to quit the program"""
+def exit():  
     if not ser.is_open:
         ser.open()
     led_off()
