@@ -9,7 +9,7 @@ permissions:
   contents: read
 
 jobs:
-  Ambient Light Detector:
+  Ambient_Light_Detector:
     runs-on: windows-latest
     defaults:
       run:
