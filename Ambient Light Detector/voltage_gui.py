@@ -1,9 +1,10 @@
+"""Non-standard imports found in requirements.txt"""
 import os
-import tkinter as tk
 import time
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-from matplotlib.figure import Figure
+import tkinter as tk
 import serial
+from matplotlib.figure import Figure
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 
 def led_on():
@@ -45,20 +46,21 @@ def serial_off():
     onSer.configure(state="normal", bg="#f0f6f7")
 
 
-def update(voltage):  
-    # Function to update the bar graph
+def update(height):
+    """Function to update the bar graph"""
     ax.margins(0.5, 0)
     ax.set_ylim(0, 5.4)
     ax.set_yticks([0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5])
     ax.set_title("Ambient Light", size=16, pad=25, weight="bold")
     ax.set_ylabel("Voltage (V)", size=14, labelpad=10)
-    rect[0].set_height(voltage)
-    text.set_text("{:.3f} V".format(voltage))
-    text.set_y(voltage + 0.08)
+    rect[0].set_height(height)
+    text.set_text(f"{height:.3f} V")
+    text.set_y(height + 0.08)
     canvas.draw()
 
-"""Function to quit the program"""
-def exit():  
+
+def _exit():
+    """Function to quit the program"""
     if not ser.is_open:
         ser.open()
     led_off()
@@ -188,28 +190,28 @@ quitB = tk.Button(
     bg="#fefdf9",
     activebackground="#de282c",
     activeforeground="#fefdf9",
-    command=exit,
+    command=_exit,
 )
 quitB.grid(column=1, row=14, padx=12, pady=8, sticky=tk.W)
 root.protocol("WM_DELETE_WINDOW", exit)
 
 # Read serial data and update the bar graph
-list = []
+lst = []
 while True:
-    while "|" not in list and ser.is_open:
+    while "|" not in lst and ser.is_open:
         try:
             data = ser.read().decode().strip()
             if data:
-                list.append(data)
+                lst.append(data)
         except ValueError:
             pass
-    if list:
-        list.pop()
+    if lst:
+        lst.pop()
     try:
-        voltage = int("".join(list)) * (5.0 / 1023.0)
-        update(voltage)
+        VOLTAGE = int("".join(lst)) * (5.0 / 1023.0)
+        update(VOLTAGE)
     except ValueError:
         pass
-    list.clear()
+    lst.clear()
     root.update_idletasks()
     root.update()
