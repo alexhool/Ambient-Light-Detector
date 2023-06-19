@@ -8,12 +8,13 @@ on: push
 permissions:
   contents: read
 
+defaults:
+      run:
+        working-directory: ./Ambient Light Detector
+
 jobs:
   build:
     runs-on: windows-latest
-    defaults:
-      run:
-        working-directory: ./Ambient Light Detector
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python 3.11.4
