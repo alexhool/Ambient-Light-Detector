@@ -2,7 +2,6 @@ import os
 import tkinter as tk
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
-import numpy as np
 import serial
 import time
 
@@ -50,7 +49,7 @@ def serOff():
 def update(voltage):
     ax.margins(0.5, 0)
     ax.set_ylim(0, 5.4)
-    ax.set_yticks(np.arange(0, 5.5, 0.5))
+    ax.set_yticks([0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5])
     ax.set_title("Ambient Light", size=16, pad=25, weight="bold")
     ax.set_ylabel("Voltage (V)", size=14, labelpad=10)
     bar[0].set_height(voltage)
@@ -74,7 +73,7 @@ ser = serial.Serial(port="COM3", baudrate=9600, timeout=0)
 root = tk.Tk()
 root.title("Ambient Light Graph")
 icon = tk.PhotoImage(file="Ambient Light Detector\\light-bulb.png")
-root.iconphoto(False, icon)
+root.iconphoto(True, icon)
 root.geometry("543x625")
 root.resizable(False, False)
 root.config(bg="#fdefc3")
