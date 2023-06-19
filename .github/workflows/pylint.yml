@@ -2,6 +2,8 @@ name: Pylint
 
 on: push
 
+permissions: read-all
+
 jobs:
   Ambient_Light_Detector:
     runs-on: windows-latest

@@ -22,7 +22,7 @@ def led_off():  # Function to turn the LED off
 
 def serial_on():  # Function to turn serial connection on
     onSer.configure(state="disabled", bg="#D3D3D3")
-    bar[0].set_visible(True)
+    rect[0].set_visible(True)
     ser.open()
     time.sleep(1.27)
     onLED.configure(state="normal", bg="#f0f6f7")
@@ -34,7 +34,7 @@ def serial_off():  # Function to turn serial connection off
     led_off()
     onLED.configure(state="disabled", bg="#D3D3D3")
     ser.close()
-    bar[0].set_visible(False)
+    rect[0].set_visible(False)
     text.set_text("Serial Connection Off")
     text.set_y(2.8)
     canvas.draw()
@@ -47,14 +47,13 @@ def update(voltage):  # Function to update the bar graph
     ax.set_yticks([0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5])
     ax.set_title("Ambient Light", size=16, pad=25, weight="bold")
     ax.set_ylabel("Voltage (V)", size=14, labelpad=10)
-    bar[0].set_height(voltage)
+    rect[0].set_height(voltage)
     text.set_text("{:.3f} V".format(voltage))
     text.set_y(voltage + 0.08)
     canvas.draw()
 
 
-# Function to quit the program
-def exit():
+def exit():  # Function to quit the program
     if not ser.is_open:
         ser.open()
     led_off()
@@ -82,7 +81,7 @@ ax = fig.add_subplot(1, 1, 1)
 ax.set_facecolor("#fefdf9")
 ax.tick_params(axis="x", bottom=False, labelsize=14, pad=10)
 ax.tick_params(axis="y", left=True, labelsize=12, pad=2)
-bar = ax.bar(
+rect = ax.bar(
     x="Brightness",
     height=0,
     color="#fcd768",
