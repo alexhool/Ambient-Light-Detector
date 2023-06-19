@@ -3,20 +3,17 @@
 
 name: Python application
 
-on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+on: push
 
 permissions:
   contents: read
 
 jobs:
   build:
-
     runs-on: windows-latest
-
+    defaults:
+      run:
+        working-directory: ./Ambient Light Detector
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python 3.11.4
