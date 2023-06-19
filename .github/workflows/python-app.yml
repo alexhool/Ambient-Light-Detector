@@ -9,8 +9,8 @@ permissions:
   contents: read
 
 defaults:
-      run:
-        working-directory: ./Ambient Light Detector
+  run:
+    working-directory: ./Ambient Light Detector
 
 jobs:
   build:
