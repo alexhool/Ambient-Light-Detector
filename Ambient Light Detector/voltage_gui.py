@@ -59,12 +59,12 @@ def update(height):
     canvas.draw()
 
 
-def _exit():
+def exit_gui():
     """Function to quit the program"""
     if not ser.is_open:
         ser.open()
     led_off()
-    os._exit(0)
+    os._exit(0)  # pylint: disable=protected-access
 
 
 # Initialize serial connection
@@ -190,7 +190,7 @@ quitB = tk.Button(
     bg="#fefdf9",
     activebackground="#de282c",
     activeforeground="#fefdf9",
-    command=_exit,
+    command=exit_gui,
 )
 quitB.grid(column=1, row=14, padx=12, pady=8, sticky=tk.W)
 root.protocol("WM_DELETE_WINDOW", exit)
