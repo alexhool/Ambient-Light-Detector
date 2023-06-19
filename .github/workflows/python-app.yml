@@ -9,7 +9,7 @@ permissions:
   contents: read
 
 jobs:
-  build1:
+  Ambient Light Detector:
     runs-on: windows-latest
     defaults:
       run:
@@ -34,4 +34,4 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        pytest
+        pytest -ra voltage_gui.py
