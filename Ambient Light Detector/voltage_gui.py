@@ -54,7 +54,7 @@ def update(height):
     ax.set_title("Ambient Light", size=16, pad=25, weight="bold")
     ax.set_ylabel("Voltage (V)", size=14, labelpad=10)
     rect[0].set_height(height)
-    text.set_text(f"{height:.5f} V")
+    text.set_text(f"{height:.3f} V")
     text.set_y(height + 0.08)
     canvas.draw()
 
@@ -152,7 +152,7 @@ while True:
     if lst:
         lst.pop()
     try:
-        VOLTAGE = int("".join(lst)) * (4.96 / 1023.0)
+        VOLTAGE = int("".join(lst)) * (4.955 / 1023.0)
         update(VOLTAGE)
     except ValueError:
         pass
