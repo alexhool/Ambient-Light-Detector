@@ -137,7 +137,7 @@ quitB = tk.Button(root, text="QUIT", width=10, height=2,
                   activebackground="#de282c", activeforeground="#fefdf9",
                   command=exit_gui)
 quitB.grid(column=1, row=14, padx=12, pady=8, sticky=tk.W)
-root.protocol("WM_DELETE_WINDOW", exit)
+root.protocol("WM_DELETE_WINDOW", exit_gui)
 
 # Read serial data and update the bar graph
 lst = []
@@ -152,7 +152,7 @@ while True:
     if lst:
         lst.pop()
     try:
-        VOLTAGE = int("".join(lst)) * (4.955 / 1023.0)
+        VOLTAGE = int("".join(lst)) * (4.964 / 1023.0)
         update(VOLTAGE)
     except ValueError:
         pass
