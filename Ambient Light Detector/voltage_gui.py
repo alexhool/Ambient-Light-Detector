@@ -3,8 +3,8 @@ import os
 import time
 import tkinter as tk
 import serial
-from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from matplotlib.figure import Figure
 
 
 # Function to turn the LED on
