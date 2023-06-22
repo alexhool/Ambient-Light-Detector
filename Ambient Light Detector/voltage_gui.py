@@ -81,61 +81,117 @@ root.config(bg="#fdefc3")
 
 # Set up the plot
 fig = Figure(figsize=(4, 6), facecolor="#fdefc3")
-fig.subplots_adjust(top=0.865, bottom=0.115, left=0.215, right=0.85,
-                    hspace=0.2, wspace=0.2)
+fig.subplots_adjust(
+    top=0.865, bottom=0.115, left=0.215, right=0.85, hspace=0.2, wspace=0.2
+)
 ax = fig.add_subplot(1, 1, 1)
 ax.set_facecolor("#fefdf9")
 ax.tick_params(axis="x", bottom=False, labelsize=14, pad=10)
 ax.tick_params(axis="y", left=True, labelsize=12, pad=2)
-rect = ax.bar(x="Brightness", height=0, color="#fcd768", edgecolor="#000000",
-              linewidth=0.5, width=2, align="center",)
+rect = ax.bar(
+    x="Brightness",
+    height=0,
+    color="#fcd768",
+    edgecolor="#000000",
+    linewidth=0.5,
+    width=2,
+    align="center",
+)
 text = ax.text(0, 0, "", ha="center", va="bottom")
 
 # Add the plot to the Tkinter widget
 canvas = FigureCanvasTkAgg(fig, root)
 canvas.get_tk_widget().config(bg="#000000")
-canvas.get_tk_widget().grid(column=0, row=0, rowspan=15, sticky=tk.NSEW,
-                            padx=10, pady=10, ipadx=5, ipady=2)
+canvas.get_tk_widget().grid(
+    column=0, row=0, rowspan=15, sticky=tk.NSEW, padx=10, pady=10, ipadx=5, ipady=2
+)
 
 # Add Serial Connection label
-labelSer = tk.Label(root, text="Serial Connection", font=("DejaVu Sans", 15),
-                    bg="#fdefc3", wraplength=110, justify="center")
+labelSer = tk.Label(
+    root,
+    text="Serial Connection",
+    font=("DejaVu Sans", 15),
+    bg="#fdefc3",
+    wraplength=110,
+    justify="center",
+)
 labelSer.grid(column=1, row=2, padx=0, pady=0, sticky=tk.SW)
 
 # Add the Serial On button
-onSer = tk.Button(root, text="On", width=10, height=1,
-                  font=("DejaVu Sans", 9), bg="#D3D3D3", state="disabled",
-                  command=serial_on)
+onSer = tk.Button(
+    root,
+    text="On",
+    width=10,
+    height=1,
+    font=("DejaVu Sans", 9),
+    bg="#D3D3D3",
+    state="disabled",
+    command=serial_on,
+)
 onSer.grid(column=1, row=3, padx=12, pady=10, sticky=tk.NW)
 
 # Add the Serial Off button
-offSer = tk.Button(root, text="Off", width=10, height=1,
-                   font=("DejaVu Sans", 9), bg="#fefdf9", state="normal",
-                   command=serial_off)
+offSer = tk.Button(
+    root,
+    text="Off",
+    width=10,
+    height=1,
+    font=("DejaVu Sans", 9),
+    bg="#fefdf9",
+    state="normal",
+    command=serial_off,
+)
 offSer.grid(column=1, row=3, padx=12, pady=38, sticky=tk.NW)
 
 # Add LED Visualizer label
-labelLED = tk.Label(root, text="LED Visualizer", font=("DejaVu Sans", 15),
-                    bg="#fdefc3", wraplength=100, justify="center")
+labelLED = tk.Label(
+    root,
+    text="LED Visualizer",
+    font=("DejaVu Sans", 15),
+    bg="#fdefc3",
+    wraplength=100,
+    justify="center",
+)
 labelLED.grid(column=1, row=4, padx=8, pady=0, sticky=tk.SW)
 
 # Add the LED On button
-onLED = tk.Button(root, text="On", width=10, height=1,
-                  font=("DejaVu Sans", 9), bg="#fefdf9", state="normal",
-                  command=led_on)
+onLED = tk.Button(
+    root,
+    text="On",
+    width=10,
+    height=1,
+    font=("DejaVu Sans", 9),
+    bg="#fefdf9",
+    state="normal",
+    command=led_on,
+)
 onLED.grid(column=1, row=5, padx=12, pady=10, sticky=tk.NW)
 
 # Add the LED Off button
-offLED = tk.Button(root, text="Off", width=10, height=1,
-                   font=("DejaVu Sans", 9), bg="#D3D3D3", state="disabled",
-                   command=led_off)
+offLED = tk.Button(
+    root,
+    text="Off",
+    width=10,
+    height=1,
+    font=("DejaVu Sans", 9),
+    bg="#D3D3D3",
+    state="disabled",
+    command=led_off,
+)
 offLED.grid(column=1, row=5, padx=12, pady=38, sticky=tk.NW)
 
 # Add the quit button
-quitB = tk.Button(root, text="QUIT", width=10, height=2,
-                  font=("DejaVu Sans", 9), bg="#fefdf9",
-                  activebackground="#de282c", activeforeground="#fefdf9",
-                  command=exit_gui)
+quitB = tk.Button(
+    root,
+    text="QUIT",
+    width=10,
+    height=2,
+    font=("DejaVu Sans", 9),
+    bg="#fefdf9",
+    activebackground="#de282c",
+    activeforeground="#fefdf9",
+    command=exit_gui,
+)
 quitB.grid(column=1, row=14, padx=12, pady=8, sticky=tk.W)
 root.protocol("WM_DELETE_WINDOW", exit_gui)
 
