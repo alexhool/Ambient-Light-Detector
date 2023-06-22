@@ -1,5 +1,5 @@
 # Non-standard imports found in requirements.txt
-# import os
+import os
 import time
 import tkinter as tk
 import serial
@@ -64,7 +64,7 @@ def exit_gui():
     if not ser.is_open:
         ser.open()
     led_off()
-    # os._exit(0)
+    os._exit(0)
 
 
 # Initialize serial connection
