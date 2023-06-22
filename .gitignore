@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,python,venv
-# Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,python,venv
+# Created by https://www.toptal.com/developers/gitignore/api/python,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=python,visualstudiocode
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
@@ -173,18 +173,6 @@ poetry.toml
 # LSP config files
 pyrightconfig.json
 
-### venv ###
-# Virtualenv
-# http://iamzed.com/2009/05/07/a-primer-on-virtualenv/
-[Bb]in
-[Ii]nclude
-[Ll]ib
-[Ll]ib64
-[Ll]ocal
-[Ss]cripts
-pyvenv.cfg
-pip-selfcheck.json
-
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
@@ -204,4 +192,4 @@ pip-selfcheck.json
 .history
 .ionide
 
-# End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,python,venv
+# End of https://www.toptal.com/developers/gitignore/api/python,visualstudiocode
