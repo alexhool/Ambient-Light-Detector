@@ -208,7 +208,7 @@ while True:
     if lst:
         lst.pop()
     try:
-        VOLTAGE = int("".join(lst)) * (4.948 / 1023.0)
+        VOLTAGE = int("".join(lst)) * (4.95 / 1023.0)
         update(VOLTAGE)
     except ValueError:
         pass
