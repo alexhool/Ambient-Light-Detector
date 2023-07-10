@@ -7,8 +7,9 @@ import serial
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
 
-python = psutil.Process()
-python.nice(psutil.HIGH_PRIORITY_CLASS)
+win = psutil.Process()
+win.nice(psutil.HIGH_PRIORITY_CLASS)
+win.ionice(psutil.IOPRIO_HIGH)
 
 
 # Function to turn the LED on
