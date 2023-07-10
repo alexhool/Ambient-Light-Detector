@@ -22,13 +22,13 @@ void loop() {
     }
   }
   if (ledOn) {
-    int delay = round((unsigned long) value * value / 91.0);
+    int delay = round((unsigned long) value * value / 79.73);
     digitalWrite(13, HIGH);
     delayMicroseconds(delay);
     digitalWrite(13, LOW);
-    delayMicroseconds(11500 - delay);
+    delayMicroseconds(11463 - delay);
   } else {
     digitalWrite(13, LOW);
-    delayMicroseconds(11500);
+    delayMicroseconds(11463);
   }
 }
