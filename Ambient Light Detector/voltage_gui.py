@@ -77,7 +77,7 @@ ser = serial.Serial(port="COM3", baudrate=9600, timeout=0)
 # Set up the Tkinter GUI
 root = tk.Tk()
 root.title("Ambient Light Graph")
-icon = tk.PhotoImage(file="light-bulb.png")
+icon = tk.PhotoImage(file="Ambient Light Detector\\light-bulb.png")
 root.iconphoto(True, icon)
 root.geometry("543x625")
 root.resizable(False, False)
