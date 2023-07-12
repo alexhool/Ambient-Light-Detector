@@ -73,6 +73,8 @@ def exit_gui():
 
 # Initialize serial connection
 ser = serial.Serial(port="COM3", baudrate=9600, timeout=0)
+ser.reset_input_buffer()
+ser.reset_output_buffer()
 
 # Set up the Tkinter GUI
 root = tk.Tk()
