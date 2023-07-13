@@ -2,8 +2,8 @@ bool ledOn = false;
 
 void setup() {
   Serial.begin(9600);
-  pinMode(13, OUTPUT);
-  digitalWrite(13, LOW);
+  pinMode(9, OUTPUT);
+  digitalWrite(9, LOW);
 }
 
 void loop() {
@@ -22,14 +22,21 @@ void loop() {
     }
   }
   if (ledOn) {
-    int delay = round((unsigned long) value * value / 91.0);
-    digitalWrite(13, HIGH);
-    delayMicroseconds(delay);
-    digitalWrite(13, LOW);
-    delayMicroseconds(11500 - delay);
+    if (value >= 1020) {
+      digitalWrite(9, HIGH);
+      delayMicroseconds(11465);
+    } else if (value < 45) {
+      digitalWrite(9, LOW);
+      delayMicroseconds(11465);
+    } else {
+      int delay = round((unsigned long) value * value / 91.0);
+      digitalWrite(9, HIGH);
+      delayMicroseconds(delay);
+      digitalWrite(9, LOW);
+      delayMicroseconds(11410 - delay); 
+    }
   } else {
-    digitalWrite(13, LOW);
-    delayMicroseconds(11500
-    );
+    digitalWrite(9, LOW);
+    delayMicroseconds(11465);
   }
 }
