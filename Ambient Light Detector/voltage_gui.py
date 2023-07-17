@@ -21,7 +21,7 @@ def led_on():
 
 # Function to turn the LED off
 def led_off():
-    if (ser.is_open):
+    if ser.is_open:
         ser.write(bytes("L", "UTF-8"))
         ser.flush()
     offLED.configure(state="disabled", bg="#D3D3D3")
