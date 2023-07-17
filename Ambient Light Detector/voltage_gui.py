@@ -21,20 +21,24 @@ def led_on():
 
 # Function to turn the LED off
 def led_off():
+    if (ser.is_open):
+        ser.write(bytes("L", "UTF-8"))
+        ser.flush()
     offLED.configure(state="disabled", bg="#D3D3D3")
-    ser.write(bytes("L", "UTF-8"))
-    ser.flush()
     onLED.configure(state="normal", bg="#f0f6f7")
 
 
 # Function to turn serial connection on
 def serial_on():
-    onSer.configure(state="disabled", bg="#D3D3D3")
-    rect[0].set_visible(True)
-    ser.open()
-    time.sleep(1.27)
-    onLED.configure(state="normal", bg="#f0f6f7")
-    offSer.configure(state="normal", bg="#f0f6f7")
+    try:
+        onSer.configure(state="disabled", bg="#D3D3D3")
+        rect[0].set_visible(True)
+        ser.open()
+        time.sleep(1.27)
+        onLED.configure(state="normal", bg="#f0f6f7")
+        offSer.configure(state="normal", bg="#f0f6f7")
+    except serial.SerialException:
+        pass
 
 
 # Function to turn serial connection off
@@ -65,16 +69,18 @@ def update(height):
 
 # Function to quit the program
 def exit_gui():
-    if not ser.is_open:
-        ser.open()
-    led_off()
+    try:
+        if not ser.is_open:
+            ser.open()
+        led_off()
+    except serial.SerialException:
+        pass
     os._exit(0)
 
 
-# Initialize serial connection
-ser = serial.Serial(port="COM3", baudrate=9600, timeout=0)
-ser.reset_input_buffer()
-ser.reset_output_buffer()
+# Function to initialize serial connection
+ser = serial.Serial(baudrate=9600, timeout=0)
+ser.port = "COM3"
 
 # Set up the Tkinter GUI
 root = tk.Tk()
@@ -204,20 +210,24 @@ root.protocol("WM_DELETE_WINDOW", exit_gui)
 # Read serial data and update the bar graph
 lst = []
 while True:
-    while "|" not in lst and ser.is_open:
+    if ser.is_open:
+        while "|" not in lst:
+            try:
+                data = ser.read().decode().strip()
+                if data:
+                    lst.append(data)
+            except ValueError:
+                pass
+        if lst:
+            lst.pop()
         try:
-            data = ser.read().decode().strip()
-            if data:
-                lst.append(data)
+            VOLTAGE = int("".join(lst)) * (4.963 / 1023.0)
+            update(VOLTAGE)
         except ValueError:
             pass
-    if lst:
-        lst.pop()
-    try:
-        VOLTAGE = int("".join(lst)) * (4.963 / 1023.0)
-        update(VOLTAGE)
-    except ValueError:
-        pass
-    lst.clear()
+        lst.clear()
+    else:
+        update(0)
+        serial_off()
     root.update_idletasks()
     root.update()
