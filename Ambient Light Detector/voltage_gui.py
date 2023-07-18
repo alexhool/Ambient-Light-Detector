@@ -9,7 +9,6 @@ from matplotlib.figure import Figure
 
 win = psutil.Process()
 win.nice(psutil.HIGH_PRIORITY_CLASS)
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Function to turn the LED on
@@ -86,7 +85,7 @@ ser.port = "COM3"
 # Set up the Tkinter GUI
 root = tk.Tk()
 root.title("Ambient Light Graph")
-icon = tk.PhotoImage(file="light-bulb.png")
+icon = tk.PhotoImage(file="Ambient Light Detector\\light-bulb.png")
 root.iconphoto(True, icon)
 root.geometry("543x625")
 root.resizable(False, False)
