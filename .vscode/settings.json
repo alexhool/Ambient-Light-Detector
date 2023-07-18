@@ -1,9 +1,0 @@
-{
-    "python.analysis.typeCheckingMode": "basic",
-    "[python]": {
-        "editor.defaultFormatter": "ms-python.black-formatter"
-    },
-    "python.formatting.provider": "none",
-    "python.linting.enabled": true,
-    "python.linting.flake8Enabled": true
-}
