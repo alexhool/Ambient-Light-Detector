@@ -22,9 +22,11 @@ def led_on():
 
 # Function to turn the LED off
 def led_off():
-    if ser.is_open:
+    try:
         ser.write(bytes("L", "UTF-8"))
         ser.flush()
+    except serial.SerialException:
+        pass
     offLED.configure(state="disabled", bg="#D3D3D3")
     onLED.configure(state="normal", bg="#f0f6f7")
 
@@ -49,8 +51,8 @@ def serial_off():
     onLED.configure(state="disabled", bg="#D3D3D3")
     ser.close()
     rect[0].set_visible(False)
-    text.set_text("Serial Connection Off")
-    text.set_y(2.8)
+    text.set_text("Lost Connection")
+    text.set_y(2.7)
     canvas.draw()
     onSer.configure(state="normal", bg="#f0f6f7")
 
@@ -210,25 +212,25 @@ root.protocol("WM_DELETE_WINDOW", exit_gui)
 
 # Read serial data and update the bar graph
 lst = []
+update(0)
+try:
+    serial_on()
+except serial.SerialException:
+    pass
 while True:
-    if ser.is_open:
+    try:
         while "|" not in lst:
-            try:
-                data = ser.read().decode().strip()
-                if data:
-                    lst.append(data)
-            except ValueError:
-                pass
+            data = ser.read().decode().strip()
+            if data:
+                lst.append(data)
         if lst:
             lst.pop()
-        try:
-            VOLTAGE = int("".join(lst)) * (4.963 / 1023.0)
-            update(VOLTAGE)
-        except ValueError:
-            pass
-        lst.clear()
-    else:
-        update(0)
+        VOLTAGE = int("".join(lst)) * (4.963 / 1023.0)
+        update(VOLTAGE)
+    except ValueError:
+        pass
+    except serial.SerialException:
         serial_off()
+    lst.clear()
     root.update_idletasks()
     root.update()
