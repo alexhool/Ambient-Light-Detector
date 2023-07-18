@@ -188,6 +188,6 @@ pyrightconfig.json
 .ionide
 
 ### GitHub ###
-.github
+.github/
 
 # End of https://www.toptal.com/developers/gitignore/api/python,visualstudiocode
