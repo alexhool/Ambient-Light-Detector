@@ -231,4 +231,3 @@ while True:
         serial_off()
     root.update_idletasks()
     root.update()
-lj
