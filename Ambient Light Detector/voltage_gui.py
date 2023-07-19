@@ -112,7 +112,7 @@ rect = ax.bar(
     width=2,
     align="center",
 )
-text = ax.text(0, 0, "", ha="center", va="bottom")
+text = ax.text(0, 0, "", ha="center", va="bottom", size=11)
 
 # Add the plot to the Tkinter widget
 canvas = FigureCanvasTkAgg(fig, root)
