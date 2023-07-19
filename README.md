@@ -2,7 +2,7 @@
 My internship project at OSI Optoelectronics.
 
 ## How to Run:
-1. Download and extract source code from assets below
+1. Download the source code either from the zip or by cloning the repository
 2. Upload [serial_voltage.ino](https://github.com/alexhool/OSI-Projects/tree/master/Ambient%20Light%20Detector/serial_voltage/serial_voltage.ino) to an Arduino IDE compatible board
 3. Install required dependencies from "requirements.txt"
    - Using pip: `pip3 install -r "requirements.txt"` 
