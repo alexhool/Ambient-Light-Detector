@@ -24,5 +24,5 @@ My internship project at OSI Optoelectronics.
 - 5mm LED
 - 100 Ω Resistor†
 
-**Similar component types can be used (compatibility with 3D models not ensured)*
+*\*Similar component types can be used (compatibility with 3D models not ensured)*\
 †*Values can be ±25% of those specified*
