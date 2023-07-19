@@ -1,4 +1,4 @@
-# Ambient-Light-Detector
+# Ambient LightDetector
 My internship project at OSI Optoelectronics.
 
 ## How to Run:
