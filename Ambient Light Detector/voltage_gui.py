@@ -81,7 +81,7 @@ def exit_gui():
     os._exit(0)
 
 
-# Function to initialize serial connection
+# Initialize serial connection
 ser = serial.Serial(baudrate=9600, timeout=0)
 ser.port = "COM3"
 
