@@ -18,7 +18,7 @@ My internship project at [OSI Optoelectronics](https://www.osioptoelectronics.co
 - Arduino Nano*
 - OSD60-0*
 - LMP7721*
-- 12-Pin SMT Breakout PCB
+- 12-Pin SMT Breakout PCB*
 - 50 kΩ Resistor†
 - 15 pF Capacitor†
 - 5mm LED
