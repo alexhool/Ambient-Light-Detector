@@ -1,5 +1,5 @@
 # Ambient Light Detector
-My internship project at [OSI Optoelectronics](https://www.osioptoelectronics.com/).
+My internship project at **[OSI Optoelectronics](https://www.osioptoelectronics.com/)**.
 
 ## How to Run:
 1. Download the source code either from the zip or by cloning the repository
