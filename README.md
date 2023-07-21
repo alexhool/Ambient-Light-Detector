@@ -19,10 +19,10 @@ My internship project at [OSI Optoelectronics](https://www.osioptoelectronics.co
 - OSD60-0*
 - LMP7721*
 - 12-Pin SMT Breakout PCB*
-- 50 kΩ Resistor†
-- 15 pF Capacitor†
 - 5mm LED
 - 100 Ω Resistor†
+- 50 kΩ Resistor†
+- 15 pF Capacitor†
 
 *\*Similar component types can be used (compatibility with 3D models not ensured)*\
 †*Values can be ±25% of those specified*
