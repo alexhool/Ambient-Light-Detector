@@ -9,9 +9,9 @@ My internship project at **[OSI Optoelectronics](https://www.osioptoelectronics.
 4. Run [voltage_gui.py](https://github.com/alexhool/Ambient-Light-Detector/blob/master/Ambient%20Light%20Detector/voltage_gui.py)
 
 ## Design Files:
-- STL files are included for 3D printing
+- STEP files are included for 3D printing or basic CAD
   - Files were designed specifically for the parts listed 
-- For 3D models use [assembly.f3z](https://github.com/alexhool/Ambient-Light-Detector/blob/master/Design%20Files/assembly.f3z)
+- For High Quality 3D models use [assembly.f3z](https://github.com/alexhool/Ambient-Light-Detector/blob/master/Design%20Files/assembly.f3z)
   - The *.f3z file extension is a Fusion 360 Zip Archive which contains every part file as a *.f3d file
 
 ## Parts List:
