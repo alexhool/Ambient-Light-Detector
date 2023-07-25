@@ -59,9 +59,9 @@ def serial_off():
 
 
 # Function to update the bar graph
-def update(height):
-    lux = int(round(height * 1.311727054, -1))
-    height = height * (4.963 / 1023.0)
+def update(analog):
+    lux = int(round(pow(analog, 2) * -0.00035 + analog * 1.85, -1))
+    height = analog * (4.963 / 1023.0)
     ax.margins(0.5, 0)
     ax.set_ylim(0, 5.4)
     ax.set_yticks([0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5])
