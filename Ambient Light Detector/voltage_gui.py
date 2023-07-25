@@ -53,12 +53,15 @@ def serial_off():
     rect[0].set_visible(False)
     text.set_text("Lost Connection")
     text.set_y(2.7)
+    textLux.config(text="")
     canvas.draw()
     onSer.configure(state="normal", bg="#f0f6f7")
 
 
 # Function to update the bar graph
 def update(height):
+    lux = int(round(height * 1.311727054, -1))
+    height = height * (4.963 / 1023.0)
     ax.margins(0.5, 0)
     ax.set_ylim(0, 5.4)
     ax.set_yticks([0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5])
@@ -67,6 +70,7 @@ def update(height):
     rect[0].set_height(height)
     text.set_text(f"{height:.3f} V")
     text.set_y(height + 0.08)
+    textLux.config(text=f"{lux} Lux")
     canvas.draw()
 
 
@@ -108,7 +112,7 @@ rect = ax.bar(
     height=0,
     color="#fcd768",
     edgecolor="#000000",
-    linewidth=0.5,
+    linewidth=0.7,
     width=2,
     align="center",
 )
@@ -130,7 +134,7 @@ labelSer = tk.Label(
     wraplength=110,
     justify="center",
 )
-labelSer.grid(column=1, row=2, padx=0, pady=0, sticky=tk.SW)
+labelSer.grid(column=1, row=3, padx=1, pady=0, sticky=tk.SW)
 
 # Add the Serial On button
 onSer = tk.Button(
@@ -143,7 +147,7 @@ onSer = tk.Button(
     state="disabled",
     command=serial_on,
 )
-onSer.grid(column=1, row=3, padx=12, pady=10, sticky=tk.NW)
+onSer.grid(column=1, row=4, padx=12, pady=10, sticky=tk.NW)
 
 # Add the Serial Off button
 offSer = tk.Button(
@@ -156,7 +160,7 @@ offSer = tk.Button(
     state="normal",
     command=serial_off,
 )
-offSer.grid(column=1, row=3, padx=12, pady=38, sticky=tk.NW)
+offSer.grid(column=1, row=4, padx=12, pady=38, sticky=tk.NW)
 
 # Add LED Visualizer label
 labelLED = tk.Label(
@@ -167,7 +171,7 @@ labelLED = tk.Label(
     wraplength=100,
     justify="center",
 )
-labelLED.grid(column=1, row=4, padx=8, pady=0, sticky=tk.SW)
+labelLED.grid(column=1, row=5, padx=8, pady=0, sticky=tk.SW)
 
 # Add the LED On button
 onLED = tk.Button(
@@ -180,7 +184,7 @@ onLED = tk.Button(
     state="normal",
     command=led_on,
 )
-onLED.grid(column=1, row=5, padx=12, pady=10, sticky=tk.NW)
+onLED.grid(column=1, row=6, padx=12, pady=10, sticky=tk.NW)
 
 # Add the LED Off button
 offLED = tk.Button(
@@ -193,7 +197,31 @@ offLED = tk.Button(
     state="disabled",
     command=led_off,
 )
-offLED.grid(column=1, row=5, padx=12, pady=38, sticky=tk.NW)
+offLED.grid(column=1, row=6, padx=12, pady=38, sticky=tk.NW)
+
+# Add the Lux label
+labelLux = tk.Label(
+    root,
+    text="Incident Light Value",
+    font=("DejaVu Sans", 15),
+    bg="#fdefc3",
+    wraplength=100,
+    justify="center",
+)
+labelLux.grid(column=1, row=7, padx=1, pady=0, sticky=tk.SW)
+
+# Add the Lux value label
+textLux = tk.Label(
+    root,
+    width=11,
+    height=1,
+    font=("DejaVu Sans", 13),
+    bg="#fefdf9",
+    borderwidth=1,
+    relief="solid",
+    anchor=tk.CENTER,
+)
+textLux.grid(column=1, row=8, padx=1, pady=11, ipady=16, sticky=tk.NW)
 
 # Add the quit button
 quitB = tk.Button(
@@ -225,8 +253,8 @@ while True:
                 lst.append(data)
         if lst:
             lst.pop()
-        VOLTAGE = int("".join(lst)) * (4.963 / 1023.0)
-        update(VOLTAGE)
+        analog = int("".join(lst))
+        update(analog)
     except ValueError:
         pass
     except serial.SerialException:
