@@ -98,7 +98,41 @@ class Gui:
             font=("DejaVu Sans", 9),
             bg="#D3D3D3",
             state="disabled",
-            command=lambda: self.led_off,
+            command=self.led_off,
+        )
+
+        # Initialize the Night LED label
+        self.labelNightLED = tk.Label(
+            self.root,
+            text="LED\nNight Light",
+            font=("DejaVu Sans", 15),
+            bg="#fdefc3",
+            wraplength=100,
+            justify="center",
+        )
+
+        # Initialize the Night LED On button
+        self.onNightLED = tk.Button(
+            self.root,
+            text="On",
+            width=10,
+            height=1,
+            font=("DejaVu Sans", 9),
+            bg="#fefdf9",
+            state="normal",
+            command=self.night_on,
+        )
+
+        # Initialize the Night LED Off button
+        self.offNightLED = tk.Button(
+            self.root,
+            text="Off",
+            width=10,
+            height=1,
+            font=("DejaVu Sans", 9),
+            bg="#D3D3D3",
+            state="disabled",
+            command=self.night_off,
         )
 
         # Initialize the Lux label
@@ -141,46 +175,55 @@ class Gui:
         self.root.title("Ambient Light Graph")
         icon = tk.PhotoImage(file="light-bulb.png")
         self.root.iconphoto(True, icon)
-        self.root.geometry("543x625")
+        self.root.geometry("545x621")
         self.root.resizable(False, False)
         self.root.config(bg="#fdefc3")
 
         # Set up the plot
-        self.fig.subplots_adjust(top=0.865, bottom=0.115, left=0.215, right=0.85, hspace=0.2, wspace=0.2)
+        self.fig.subplots_adjust(top=0.865, bottom=0.1, left=0.215, right=0.85, hspace=0.2, wspace=0.2)
         self.ax.set_facecolor("#fefdf9")
         self.ax.tick_params(axis="x", bottom=False, labelsize=14, pad=10)
         self.ax.tick_params(axis="y", left=True, labelsize=12, pad=2)
 
         # Add the plot to the Tkinter widget
         self.canvas.get_tk_widget().config(bg="#000000")
-        self.canvas.get_tk_widget().grid(column=0, row=0, rowspan=15, sticky=tk.NSEW, padx=10, pady=10, ipadx=5, ipady=2)
+        self.canvas.get_tk_widget().grid(column=0, row=0, rowspan=2, sticky=tk.N, padx=10, pady=8, ipadx=5, ipady=2)
 
         # Add Serial Connection label
-        self.labelSer.grid(column=1, row=3, padx=1, pady=0, sticky=tk.SW)
+        self.labelSer.grid(column=1, row=0, rowspan=2, padx=0, pady=26, sticky=tk.N)
 
         # Add the Serial On button
-        self.onSer.grid(column=1, row=4, padx=12, pady=10, sticky=tk.NW)
+        self.onSer.grid(column=1, row=0, rowspan=2, padx=14, pady=84, sticky=tk.N)
 
         # Add the Serial Off button
-        self.offSer.grid(column=1, row=4, padx=12, pady=38, sticky=tk.NW)
+        self.offSer.grid(column=1, row=0, rowspan=2, padx=14, pady=111, sticky=tk.N)
 
         # Add LED Visualizer label
-        self.labelLED.grid(column=1, row=5, padx=8, pady=0, sticky=tk.SW)
+        self.labelLED.grid(column=1, row=1, rowspan=4, padx=0, pady=156, sticky=tk.N)
 
         # Add the LED On button
-        self.onLED.grid(column=1, row=6, padx=12, pady=10, sticky=tk.NW)
+        self.onLED.grid(column=1, row=1, rowspan=1, padx=14, pady=214, sticky=tk.N)
 
         # Add the LED Off button
-        self.offLED.grid(column=1, row=6, padx=12, pady=38, sticky=tk.NW)
+        self.offLED.grid(column=1, row=1, rowspan=1, padx=14, pady=241, sticky=tk.N)
+
+        # Add the Night LED label
+        self.labelNightLED.grid(column=1, row=1, rowspan=1, padx=0, pady=286, sticky=tk.N)
+
+        # Add the Night LED On button
+        self.onNightLED.grid(column=1, row=1, rowspan=1, padx=14, pady=344, sticky=tk.N)
+
+        # Add the Night LED Off button
+        self.offNightLED.grid(column=1, row=1, rowspan=1, padx=14, pady=371, sticky=tk.N)
 
         # Add the Lux label
-        self.labelLux.grid(column=1, row=7, padx=1, pady=0, sticky=tk.SW)
+        self.labelLux.grid(column=1, row=1, padx=0, pady=416, sticky=tk.N)
 
         # Add the Lux value label
-        self.textLux.grid(column=1, row=8, padx=1, pady=11, ipady=16, sticky=tk.NW)
+        self.textLux.grid(column=1, row=1, padx=1, pady=474, ipady=16, sticky=tk.N)
 
         # Add the quit button
-        self.quitB.grid(column=1, row=14, padx=12, pady=8, sticky=tk.W)
+        self.quitB.grid(column=1, row=1, padx=14, pady=564, sticky=tk.N)
         self.root.protocol("WM_DELETE_WINDOW", self.exit_gui)
 
     # Function to draw the GUI
@@ -205,6 +248,23 @@ class Gui:
         self.offLED.configure(state="disabled", bg="#D3D3D3")
         self.onLED.configure(state="normal", bg="#f0f6f7")
 
+    # Function to turn the night LED on
+    def night_on(self):
+        self.onNightLED.configure(state="disabled", bg="#D3D3D3")
+        self.ser.write(bytes("N", "UTF-8"))
+        self.ser.flush()
+        self.offNightLED.configure(state="normal", bg="#f0f6f7")
+
+    # Function to turn the night LED off
+    def night_off(self):
+        try:
+            self.ser.write(bytes("D", "UTF-8"))
+            self.ser.flush()
+        except serial.SerialException:
+            pass
+        self.offNightLED.configure(state="disabled", bg="#D3D3D3")
+        self.onNightLED.configure(state="normal", bg="#f0f6f7")
+
     # Function to turn serial connection on
     def serial_on(self):
         try:
@@ -213,6 +273,7 @@ class Gui:
             self.ser.open()
             time.sleep(1.27)
             self.onLED.configure(state="normal", bg="#f0f6f7")
+            self.onNightLED.configure(state="normal", bg="#f0f6f7")
             self.offSer.configure(state="normal", bg="#f0f6f7")
         except serial.SerialException:
             pass
@@ -221,7 +282,9 @@ class Gui:
     def serial_off(self):
         self.offSer.configure(state="disabled", bg="#D3D3D3")
         self.led_off()
+        self.night_off()
         self.onLED.configure(state="disabled", bg="#D3D3D3")
+        self.onNightLED.configure(state="disabled", bg="#D3D3D3")
         self.ser.close()
         self.rect[0].set_visible(False)
         self.textVolt.set_text("Lost Connection")
@@ -251,6 +314,7 @@ class Gui:
             if not self.ser.is_open:
                 self.ser.open()
             self.led_off()
+            self.night_off()
         except serial.SerialException:
             pass
         os._exit(0)
