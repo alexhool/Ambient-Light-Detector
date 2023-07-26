@@ -234,6 +234,7 @@ class Gui:
     # Function to turn the LED on
     def led_on(self):
         self.onLED.configure(state="disabled", bg="#D3D3D3")
+        self.onNightLED.configure(state="disabled", bg="#D3D3D3")
         self.ser.write(bytes("H", "UTF-8"))
         self.ser.flush()
         self.offLED.configure(state="normal", bg="#f0f6f7")
@@ -247,10 +248,12 @@ class Gui:
             pass
         self.offLED.configure(state="disabled", bg="#D3D3D3")
         self.onLED.configure(state="normal", bg="#f0f6f7")
+        self.onNightLED.configure(state="normal", bg="#f0f6f7")
 
     # Function to turn the night LED on
     def night_on(self):
         self.onNightLED.configure(state="disabled", bg="#D3D3D3")
+        self.onLED.configure(state="disabled", bg="#D3D3D3")
         self.ser.write(bytes("N", "UTF-8"))
         self.ser.flush()
         self.offNightLED.configure(state="normal", bg="#f0f6f7")
@@ -264,6 +267,7 @@ class Gui:
             pass
         self.offNightLED.configure(state="disabled", bg="#D3D3D3")
         self.onNightLED.configure(state="normal", bg="#f0f6f7")
+        self.onLED.configure(state="normal", bg="#f0f6f7")
 
     # Function to turn serial connection on
     def serial_on(self):

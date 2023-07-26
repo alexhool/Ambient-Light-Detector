@@ -9,12 +9,11 @@ void setup() {
 }
 
 void loop() {
-  long int t1 = micros();
   int value = analogRead(A7);
-  //Serial.print(value);
-  //Serial.flush();
-  //Serial.print('|');
-  //Serial.flush();
+  Serial.print(value);
+  Serial.flush();
+  Serial.print('|');
+  Serial.flush();
   if (Serial.available() > 0) {
     int incomingByte = Serial.read();
     if (incomingByte == 'H') {
@@ -63,7 +62,4 @@ void loop() {
     digitalWrite(2, LOW);
     delayMicroseconds(11465);
   }
-  long int t2 = micros();
-  Serial.println(t2-t1);
-  Serial.flush();
 }
