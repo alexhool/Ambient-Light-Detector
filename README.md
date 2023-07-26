@@ -6,7 +6,7 @@ My internship project at **[OSI Optoelectronics](https://www.osioptoelectronics.
 2. Upload [serial_voltage.ino](https://github.com/alexhool/Ambient-Light-Detector/blob/master/Ambient%20Light%20Detector/serial_voltage/serial_voltage.ino) to an Arduino IDE compatible board
 3. Install required dependencies from "requirements.txt"
    - Using pip: `pip3 install -r "requirements.txt"` 
-4. Run [voltage_gui.py](https://github.com/alexhool/Ambient-Light-Detector/blob/master/Ambient%20Light%20Detector/voltage_gui.py)
+4. Run [voltage_gui.py](https://github.com/alexhool/Ambient-Light-Detector/blob/master/Ambient%20Light%20Detector/light_gui.py)
 
 ## Design Files:
 - STEP files are included for 3D printing or basic CAD
