@@ -8,7 +8,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
 
 
-class Gui:
+class LightGui:
     def __init__(self, ser):
         # Initialize the serial connection
         self.ser = ser
@@ -335,7 +335,7 @@ def main():
     ser.port = "COM3"
 
     # Create the GUI
-    gui = Gui(ser)
+    gui = LightGui(ser)
     gui.create_gui()
 
     # Read serial data and update the bar graph
