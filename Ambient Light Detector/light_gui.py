@@ -225,7 +225,7 @@ class LightGui:
         self.textLux.grid(column=1, row=1, padx=1, pady=474, ipady=16, sticky=tk.N)
 
         # Add the quit button
-        self.quitB.grid(column=1, row=1, padx=14, pady=564, sticky=tk.N)
+        self.quitB.grid(column=1, row=1, padx=13, pady=564, sticky=tk.N)
         self.root.protocol("WM_DELETE_WINDOW", self.exit_gui)
 
     # Function to draw the GUI
