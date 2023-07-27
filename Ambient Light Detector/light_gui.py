@@ -1,9 +1,10 @@
-# Non-standard imports found in requirements.txt
-import psutil
+# Standard imports
 import os
 import time
 import tkinter as tk
 from contextlib import suppress
+# Non-standard imports as found in requirements.txt
+import psutil
 import serial
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
