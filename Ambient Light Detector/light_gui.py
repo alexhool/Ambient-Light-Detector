@@ -3,6 +3,7 @@ import psutil
 import os
 import time
 import tkinter as tk
+from contextlib import suppress
 import serial
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
@@ -241,11 +242,9 @@ class LightGui:
 
     # Function to turn the LED off
     def led_off(self):
-        try:
+        with suppress(serial.SerialException):
             self.ser.write(bytes("L", "UTF-8"))
             self.ser.flush()
-        except serial.SerialException:
-            pass
         self.offLED.configure(state="disabled", bg="#D3D3D3")
         self.onLED.configure(state="normal", bg="#f0f6f7")
         self.onNightLED.configure(state="normal", bg="#f0f6f7")
@@ -260,18 +259,16 @@ class LightGui:
 
     # Function to turn the night LED off
     def night_off(self):
-        try:
+        with suppress(serial.SerialException):
             self.ser.write(bytes("D", "UTF-8"))
             self.ser.flush()
-        except serial.SerialException:
-            pass
         self.offNightLED.configure(state="disabled", bg="#D3D3D3")
         self.onNightLED.configure(state="normal", bg="#f0f6f7")
         self.onLED.configure(state="normal", bg="#f0f6f7")
 
     # Function to turn serial connection on
     def serial_on(self):
-        try:
+        with suppress(serial.SerialException):
             self.onSer.configure(state="disabled", bg="#D3D3D3")
             self.rect[0].set_visible(True)
             self.ser.open()
@@ -279,8 +276,6 @@ class LightGui:
             self.onLED.configure(state="normal", bg="#f0f6f7")
             self.onNightLED.configure(state="normal", bg="#f0f6f7")
             self.offSer.configure(state="normal", bg="#f0f6f7")
-        except serial.SerialException:
-            pass
 
     # Function to turn serial connection off
     def serial_off(self):
@@ -314,13 +309,11 @@ class LightGui:
 
     # Function to quit the program
     def exit_gui(self):
-        try:
+        with suppress(serial.SerialException):
             if not self.ser.is_open:
                 self.ser.open()
             self.led_off()
             self.night_off()
-        except serial.SerialException:
-            pass
         os._exit(0)
 
 
@@ -341,15 +334,12 @@ def main():
     # Read serial data and update the bar graph
     lst = []
     gui.update(0)
-    try:
+    with suppress(serial.SerialException):
         gui.serial_on()
-    except serial.SerialException:
-        pass
     while True:
         try:
             while "|" not in lst:
-                data = ser.read().decode().strip()
-                if data:
+                if data := ser.read().decode().strip():
                     lst.append(data)
             if lst:
                 lst.pop()
