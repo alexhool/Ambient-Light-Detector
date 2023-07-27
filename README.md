@@ -17,7 +17,7 @@ My internship project at **[OSI Optoelectronics](https://www.osioptoelectronics.
 ## Parts List:
 - Arduino Nano*
 - OSD60-0*
-- LMP7721*
+- OPA341*
 - 12-Pin SMT Breakout PCB*
 - 5mm LED
 - 100 Ω Resistor†
