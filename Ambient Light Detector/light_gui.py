@@ -175,8 +175,7 @@ class LightGui:
     def create_gui(self):
         # Set up the Tkinter GUI
         self.root.title("Ambient Light Graph")
-        icon = tk.PhotoImage(file="light-bulb.png")
-        self.root.iconphoto(True, icon)
+        self.root.iconbitmap("light-bulb.ico")
         self.root.geometry("545x621")
         self.root.resizable(False, False)
         self.root.config(bg="#fdefc3")
