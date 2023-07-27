@@ -3,10 +3,13 @@ My internship project at **[OSI Optoelectronics](https://www.osioptoelectronics.
 
 ## How to Run:
 1. Download the source code either from the zip or by cloning the repository
-2. Upload [light_serial.ino](https://github.com/alexhool/Ambient-Light-Detector/blob/master/Ambient%20Light%20Detector/light_serial/light_serial.ino) to an Arduino IDE compatible board
-3. Install required dependencies from "requirements.txt"
+2. Navigate into the "Ambient Light Detector" folder
+3. Upload [light_serial.ino](https://github.com/alexhool/Ambient-Light-Detector/blob/master/Ambient%20Light%20Detector/light_serial/light_serial.ino) to an Arduino IDE compatible board (located in "light_serial" folder)
+4. Either run the executable [Ambient Light Detector.exe](https://github.com/alexhool/Ambient-Light-Detector/blob/master/Ambient%20Light%20Detector/Ambient%20Light%20Detector.exe) or skip to step 5
+5. Install required dependencies from "requirements.txt"
    - Using pip: `pip3 install -r "requirements.txt"` 
-4. Run [light_gui.py](https://github.com/alexhool/Ambient-Light-Detector/blob/master/Ambient%20Light%20Detector/light_gui.py)
+   - Prerequisite: [Python 3.8+](https://www.python.org/downloads/)
+6. Run [light_gui.py](https://github.com/alexhool/Ambient-Light-Detector/blob/master/Ambient%20Light%20Detector/light_gui.py)
 
 ## Design Files:
 - STEP files are included for 3D printing or basic CAD
