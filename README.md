@@ -1,4 +1,4 @@
-# Ambient Light Detector
+# Ambient Light Detector <img alt="light bulb icon" src="https://github.com/alexhool/Ambient-Light-Detector/assets/64939304/907f60d3-e9f5-4633-8078-c0c6a9ea452d" width="31" hspace="4" align="bottom"/>
 My internship project at **[OSI Optoelectronics](https://www.osioptoelectronics.com/)**.
 
 ## How to Run:
