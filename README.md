@@ -1,5 +1,5 @@
 # Ambient Light Detector
-Measure ambient light utilizing a photodiode in a transimpedance amplifier circuit. (My internship project at **[OSI Optoelectronics](https://www.osioptoelectronics.com/)**.)
+Measure ambient light utilizing opto-sensing. (My internship project at **[OSI Optoelectronics](https://www.osioptoelectronics.com/)**.)
 
 ## How to Run:
 1. Download the source code either from the zip or by cloning the repository
