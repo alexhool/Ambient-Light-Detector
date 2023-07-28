@@ -9,7 +9,7 @@ jobs:
     runs-on: windows-latest
     defaults:
       run:
-        working-directory: Amboent Light Detector\light_gui
+        working-directory: "Ambient Light Detector\\light_gui"
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python environment
