@@ -11,7 +11,7 @@ My internship project at **[OSI Optoelectronics](https://www.osioptoelectronics.
 6. Install required dependencies from "requirements.txt"
    - Prerequisite: [Python 3.8+](https://www.python.org/downloads/)
    - Using pip: `pip install -r "requirements.txt"` 
-8. Run [light_gui.py](https://github.com/alexhool/Ambient-Light-Detector/blob/master/Ambient%20Light%20Detector/light_gui/light_gui.py)
+7. Run [light_gui.py](https://github.com/alexhool/Ambient-Light-Detector/blob/master/Ambient%20Light%20Detector/light_gui/light_gui.py)
 
 ## Design Files:
 - STEP files are included for 3D printing or basic CAD
