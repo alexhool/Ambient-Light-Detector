@@ -3,6 +3,7 @@ import os
 import time
 import tkinter as tk
 from contextlib import suppress
+
 # Non-standard imports as found in requirements.txt
 import psutil
 import serial
@@ -294,7 +295,10 @@ class LightGui:
 
     # Function to update the bar graph
     def update(self, analog):
-        lux = int(round(pow(analog, 2) * -0.00035 + analog * 1.85, -1))
+        if analog > 721:
+            lux = int(round(pow(analog, 2) * 0.0003 + analog * 1.17, -2))
+        else:
+            lux = int(round(pow(analog, 2) * 0.0003 + analog * 1.17, -1))
         height = analog * (4.963 / 1023.0)
         self.ax.margins(0.5, 0)
         self.ax.set_ylim(0, 5.4)
