@@ -30,7 +30,7 @@ void loop() {
     }
   }
   if (ledOn) {
-    if (value >= 1020) {
+    if (value > 1018) {
       digitalWrite(2, HIGH);
       delayMicroseconds(11465);
     } else if (value < 45) {
