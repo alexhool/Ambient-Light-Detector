@@ -11,7 +11,7 @@ jobs:
       run:
         working-directory: "Ambient Light Detector\\light_gui"
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Set up Python environment
       uses: actions/setup-python@v4
       with:
